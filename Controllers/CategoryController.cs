@@ -50,7 +50,7 @@ namespace Blog.Controllers
                     return StatusCode(500, new ResultViewModel<Category>("05XE05 - Falha interna no Servidor"));
                }
           }
-
+          
           // Post
           [HttpPost("v1/categories")]
           public async Task<IActionResult> PostAsync(BlogDataContext context, EditorCategoryViewModel model)
