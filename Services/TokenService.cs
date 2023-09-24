@@ -4,9 +4,9 @@ namespace Blog.Services
 {
     public class TokenService
     {
-        public string GenerateToken(User user)
-        {
+        // public string GenerateToken(User user)
+        // {
             
-        }
+        // }
     }
 }
