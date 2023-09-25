@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Blog.Extensions;
 using Blog.Models;
 using Microsoft.IdentityModel.Tokens;
 
@@ -15,15 +16,12 @@ namespace Blog.Services
 
             // CHAVE QUE ESTA NA NOSSA CONFIGURATION, POREM O "TOKENHANDLER" ESPERA UM ARRAY DE BYTES, POR ISSO PRECISO CONVERTER
             var key = Encoding.ASCII.GetBytes(Configuration.JwtKey);
+            var claims = user.GetClaims();
 
             // CONFIGURACOES DO TOKEN, ESSE ITEM DE FATO VAI CONTER TODAS AS CONFIGURACOES DO TOKEN
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                    new Claim(ClaimTypes.Name, "daniel"), // User.Identity.Name
-                    new Claim(ClaimTypes.Role, "admin") // User.IsInRole
-                }),
+                Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.UtcNow.AddHours(8),
                 SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(key), 

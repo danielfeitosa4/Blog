@@ -2,6 +2,8 @@ using Blog.Data;
 using Blog.Extensions;
 using Blog.Models;
 using Blog.ViewModels;
+using Blog.ViewModels.Categories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +14,7 @@ namespace Blog.Controllers
      {
           // Get
           [HttpGet("v1/categories")] // localhost:PORT/v1/categories
+          // [Authorize("admin")]
           public async Task<IActionResult> GetAsync(BlogDataContext context)
           {
                try
